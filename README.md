@@ -5,17 +5,20 @@ This is a python library that allows control of the limited number of PWM pins a
 
 Using it to, for example, control servo motors leads to very smooth 
 
-Enabling PWM driver:
-1) Edit /boot/config.txt and add the following:  dtoverlay=pwm-2chan
-2) Reboot
-3) Check that driver is loaded: lsmod | grep pwm_bcm
+**Enabling PWM driver:**
+1. Edit /boot/config.txt and add the following:  `dtoverlay=pwm-2chan`
+1. Reboot
+1. Check that driver is loaded: `lsmod | grep pwm_bcm`
+    1. Output should be something like `pwm_bcm2835             2711  0`
 
-Using code:
+**Using code:**
 
-The following code will smoothly turn a server through its turning radius. Tweak the duty cycle values of S, E, and M to cause your servo to go to its start, end, and middle positions, respectively.
+Place `syspwm.py` in the same directory as your code, and include it like `from syspwm import SysPWM`
+
+The following code uses syspwm to  smoothly turn a servo through its turning radius. Tweak the duty cycle values of S, E, and M to cause your servo to go to its start, end, and middle positions, respectively.
 ````python
 from syspwm import SysPWM
-from time       import sleep
+from time   import sleep
 import sys,os
 import atexit
 
@@ -49,3 +52,4 @@ while True:
                 sleep(SLEE)
         sleep(PAUS)
 ````
+I learned the /sys interface for hardware PWM from http://www.jumpnowtek.com/rpi/Using-the-Raspberry-Pi-Hardware-PWM-timers.html
