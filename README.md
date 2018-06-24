@@ -3,7 +3,7 @@ Python Libary for Hardware PWM on Raspberry Pi using Linux kernel driver and /sy
 
 This is a python library that allows control of the limited number of PWM pins available on most Raspberry Pi hardware. It does via a Linux kernel PWM driver that comes with recent kernels (at least version 4.9).
 
-Using it to, for example, control servo motors leads to very smooth 
+Using it to, for example, control servo motors leads to very smooth control, which I wasn't able to get with RPi.GPIO on a Raspberry Pi Zero W.
 
 **Enabling PWM driver:**
 1. Edit /boot/config.txt and add the following:  `dtoverlay=pwm-2chan`
